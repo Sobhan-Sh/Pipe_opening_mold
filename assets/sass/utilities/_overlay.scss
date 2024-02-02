@@ -1,0 +1,91 @@
+@charset "UTF-8";
+$direction: rtl;
+$direction_upside: ltr;
+$direction_angle: '-';
+$direction_upside_angle: '+';
+$direction_start: right;
+$direction_end: left;
+
+@if $direction == ltr {
+	$direction_upside: rtl;
+	$direction_angle: '+';
+    $direction_upside_angle: '-';
+	$direction_start: left;
+	$direction_end: right;
+}
+
+body {
+	direction: $direction;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  #{$direction_start}: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.position-center {
+  position: absolute;
+  #{$direction_start}: 50%;
+  top: 50%;
+  transform: translate(#{$direction_upside_angle}50%, -50%);
+}
+
+[data-overlay] {
+  position: relative;
+  z-index: 2;
+  [class^="col-"],
+  [class*="col-"] {
+    z-index: 1;
+  }
+}
+
+[data-overlay]:before {
+  content: '';
+  position: absolute;
+  #{$direction_start}: 0;
+  top: 0;
+  #{$direction_end}: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+
+@each $overlaycolorMap, $value in $overlaycolorMap {
+  [data-overlay="#{$overlaycolorMap}"]:before {
+    background-color: #{$value};
+  }
+}
+
+
+@for $i from 1 through 10 {
+  [data-opacity="#{1 * $i}"]:before {
+    opacity: #{$i*0.1};
+  }
+}
+@if $direction == rtl {
+
+    svg[class*=right], svg[class*=left], [class*=right].fas, [class*=left].fas {
+        transform: scaleX(-1) !important;
+    }
+
+    .product-item__badge {
+        transform: rotate(-45deg) translateZ(0) !important;
+    }
+
+    #st_gdpr_iframe {
+        left: 0 !important;
+        right: -5000px;
+    }
+
+    .product-form__item select.single-option-selector {
+        background-position: calc(23px) calc(1rem + 10px), calc(27px) calc(1rem + 10px);
+    }
+
+    .card__badge {
+        -ms-transform: rotate(-45deg) translateZ(0);
+        -webkit-transform: rotate(-45deg) translateZ(0);
+        transform: rotate(-45deg) translateZ(0);
+    }
+}

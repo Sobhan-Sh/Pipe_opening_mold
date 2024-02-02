@@ -1,0 +1,204 @@
+@charset "UTF-8";
+$direction: rtl;
+$direction_upside: ltr;
+$direction_angle: '-';
+$direction_upside_angle: '+';
+$direction_start: right;
+$direction_end: left;
+
+@if $direction == ltr {
+	$direction_upside: rtl;
+	$direction_angle: '+';
+    $direction_upside_angle: '-';
+	$direction_start: left;
+	$direction_end: right;
+}
+
+body {
+	direction: $direction;
+}
+/* Feature Card ---------------------------------- */ 
+.feature-card {
+    border: 1px solid $border-color;
+    padding-top: 0; padding-#{$direction_end}: 40px; padding-bottom: 40px; padding-#{$direction_start}: 40px;
+    background-color: $white-color;
+    margin-#{$direction_end}: -1px;
+    margin-top: 40px;
+    &_icon {
+        width: 80px;
+        height: 80px;
+        line-height: 75px;
+        text-align: center;
+        border: 1px solid $border-color;
+        background-color: inherit;
+        border-radius:99px;
+        margin-top: -40px; margin-#{$direction_end}: 0; margin-bottom: 30px; margin-#{$direction_start}: 0;
+    }
+    .box-title {
+        font-size: 30px;
+        font-weight: 600;
+    }
+    &_text {
+        margin-top: 0; margin-#{$direction_end}: 0; margin-bottom: -0.5em; margin-#{$direction_start}: 0;
+    }
+}
+
+@include xl {
+    .feature-card .box-title {
+        font-size: 28px;
+    }
+}
+
+@include lg {
+    .feature-card {
+        padding-top: 0; padding-#{$direction_end}: 30px; padding-bottom: 30px; padding-#{$direction_start}: 30px;
+        .box-title {
+            font-size: 24px;
+        }
+    }
+}
+
+@include md {
+    .feature-card {
+        text-align: center;
+        &_icon {
+            margin-top: -40px; margin-#{$direction_end}: auto; margin-bottom: 30px; margin-#{$direction_start}: auto;
+        }
+        .box-title {
+            font-size: 28px;
+        }
+    }
+}
+
+@include xs {
+    .feature-card {
+        padding-top: 0; padding-#{$direction_end}: 15px; padding-bottom: 40px; padding-#{$direction_start}: 15px;
+    }
+}
+
+@include vxs {
+    .feature-card {
+        .box-title {
+            font-size: 24px;
+        }
+    }
+}
+
+/* Feature Box ---------------------------------- */
+.feature-box {
+    padding-top: 0; padding-#{$direction_end}: 15px; padding-bottom: 30px; padding-#{$direction_start}: 15px;
+    background-color: $white-color;
+    box-shadow: 0px 6px 15px rgba(192, 192, 192, 0.15);
+    overflow: hidden;
+    text-align: center;
+    &_icon {
+        --icon-size: 120px;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        line-height: 170px;
+        text-align: center;
+        background-color: $smoke-color2;
+        border-radius:199px;
+        margin-top: calc(var(--icon-size) * -0.5); margin-#{$direction_end}: auto; margin-bottom: 25px; margin-#{$direction_start}: auto;
+        position: relative;
+        z-index: 2;
+        img {
+            transition: 0.4s ease-in-out;
+        }
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: $smoke-color2;
+            border-radius:inherit;
+            z-index: -1;
+            transition: 0.4s ease-in-out;
+        }
+        .shape1 {
+            position: absolute;
+            inset: 0;
+            border-radius:inherit;
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-color: $theme-color;
+                border-radius:inherit;
+                transition: 0.4s ease-in-out;
+            }
+        }
+        .shape1 {
+            z-index: -2;
+            &:before {
+                transform: translateX(#{$direction_upside_angle}8px);
+            }
+            &:after {
+                transform: translateX(#{$direction_angle}8px);
+            }
+        }
+    }
+    .box-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    &_text {
+        font-size: 14px;
+        max-width: 225px;
+        margin-top: 0; margin-#{$direction_end}: auto; margin-bottom: -0.55em; margin-#{$direction_start}: auto;
+    }
+    &:hover {
+        .feature-box {
+            &_icon {
+                img {
+                    filter: brightness(0) invert(1);
+                }
+                &:before,
+                &:after {
+                    z-index: -2;
+                }
+                &:before {
+                    transform: translateX(#{$direction_upside_angle}8px);
+                }
+                &:after {
+                    transform: translateX(#{$direction_angle}8px);
+                }
+                .shape1 {
+                    z-index: -1;
+                    &:before {
+                        transform: translateX(#{$direction_angle}0);
+                    }
+                    &:after {
+                        transform: translateX(#{$direction_angle}0);
+                    }
+                }
+            }
+        }
+    }
+}
+@if $direction == rtl {
+
+    svg[class*=right], svg[class*=left], [class*=right].fas, [class*=left].fas {
+        transform: scaleX(-1) !important;
+    }
+
+    .product-item__badge {
+        transform: rotate(-45deg) translateZ(0) !important;
+    }
+
+    #st_gdpr_iframe {
+        left: 0 !important;
+        right: -5000px;
+    }
+
+    .product-form__item select.single-option-selector {
+        background-position: calc(23px) calc(1rem + 10px), calc(27px) calc(1rem + 10px);
+    }
+
+    .card__badge {
+        -ms-transform: rotate(-45deg) translateZ(0);
+        -webkit-transform: rotate(-45deg) translateZ(0);
+        transform: rotate(-45deg) translateZ(0);
+    }
+}

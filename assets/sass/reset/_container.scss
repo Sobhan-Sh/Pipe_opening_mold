@@ -1,0 +1,103 @@
+@charset "UTF-8";
+$direction: rtl;
+$direction_upside: ltr;
+$direction_angle: '-';
+$direction_upside_angle: '+';
+$direction_start: right;
+$direction_end: left;
+
+@if $direction == ltr {
+	$direction_upside: rtl;
+	$direction_angle: '+';
+    $direction_upside_angle: '-';
+	$direction_start: left;
+	$direction_end: right;
+}
+
+body {
+	direction: $direction;
+}
+@include ml {
+    :root {
+        --main-container: 1250px;
+    }
+}
+
+@media (min-width: 1560px) {
+    .themeholy-container2 {
+        width: 100%;
+        max-width: 1560px;
+        margin-#{$direction_start}: auto;
+        margin-#{$direction_end}: 0;
+        padding-#{$direction_start}: 0;
+        padding-#{$direction_end}: 0;
+        .container {
+            --main-container: 1220px;
+        }
+    }
+}
+@include hd {
+    .themeholy-container2 {
+        margin-#{$direction_end}: auto;
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    .container-xxl,
+    .container-xl,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container {
+        max-width: calc(var(--main-container) + var(--container-gutters));
+        padding-#{$direction_start}: calc(var(--container-gutters) / 2);
+        padding-#{$direction_end}: calc(var(--container-gutters) / 2);
+        &.px-0 {
+            max-width: var(--main-container);
+        }
+    }
+}
+
+@media only screen and (min-width: 1300px) {
+    .themeholy-container {
+        --main-container: 1720px;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    .container-fluid.px-0 {
+        padding-#{$direction_start}: 15px !important;
+        padding-#{$direction_end}: 15px !important;
+
+        .row {
+            margin-#{$direction_start}: 0 !important;
+            margin-#{$direction_end}: 0 !important;
+        }
+    }
+}
+
+@if $direction == rtl {
+
+    svg[class*=right], svg[class*=left], [class*=right].fas, [class*=left].fas {
+        transform: scaleX(-1) !important;
+    }
+
+    .product-item__badge {
+        transform: rotate(-45deg) translateZ(0) !important;
+    }
+
+    #st_gdpr_iframe {
+        left: 0 !important;
+        right: -5000px;
+    }
+
+    .product-form__item select.single-option-selector {
+        background-position: calc(23px) calc(1rem + 10px), calc(27px) calc(1rem + 10px);
+    }
+
+    .card__badge {
+        -ms-transform: rotate(-45deg) translateZ(0);
+        -webkit-transform: rotate(-45deg) translateZ(0);
+        transform: rotate(-45deg) translateZ(0);
+    }
+}

@@ -1,0 +1,320 @@
+@charset "UTF-8";
+$direction: rtl;
+$direction_upside: ltr;
+$direction_angle: '-';
+$direction_upside_angle: '+';
+$direction_start: right;
+$direction_end: left;
+
+@if $direction == ltr {
+	$direction_upside: rtl;
+	$direction_angle: '+';
+    $direction_upside_angle: '-';
+	$direction_start: left;
+	$direction_end: right;
+}
+
+body {
+	direction: $direction;
+}
+/* Testimonial Card ---------------------------------- */
+.testi-card {
+    position: relative;
+    padding:40px;
+    border: 1px solid $border-color;
+    background-color: $white-color;
+    display: flex;
+    gap: 40px;
+    &:after {
+        content: '';
+        height: 4px;
+        width: 64%;
+        background-color: $theme-color;
+        position: absolute;
+        bottom: -1px;
+        #{$direction_end}: -1px;
+        clip-path: polygon(10px 0%, 100% 0, 100% 100%, 0% 100%);
+        z-index: 2;
+    }
+    &_quote {
+        position: absolute;
+        #{$direction_end}: 40px;
+        top: 40px;
+    }
+    &_avater {
+        width: 150px;
+        min-width: 150px;
+        text-align: center;
+    }
+    &_name {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 5px;
+        margin-top: -0.3em;
+    }
+    &_desig {
+        margin-bottom: 0;
+        display: block;
+        color: $theme-color;
+    }
+    &_text {
+        margin-bottom: -0.5em;
+        margin-top: 20px;
+    }
+    &_review {
+        color: $theme-color;
+        font-size: 20px;
+        margin-top: 15px;
+        i {
+            margin-#{$direction_end}: 9px;
+            &:last-child {
+                margin-#{$direction_end}: 0 !important;
+            }
+        }
+    }
+}
+
+@include xs {
+    .testi-card {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+        padding:40px 15px;
+        &:after {
+            #{$direction_end}: 18%;
+            clip-path: polygon(10px 0%, calc(100% - 10px) 0, 100% 100%, 0% 100%);
+        }
+        &_avater {
+            margin:0 auto;
+        }
+    }
+}
+
+/* Testimonial Box ---------------------------------- */
+.testi-box {
+    position: relative;
+    z-index: 2;
+    padding:40px;
+    border: 1px solid #3D4250;
+    background-color: #262B37;
+    margin-top: 50px;
+    &:after {
+        content: '';
+        height: 4px;
+        width: 64%;
+        background-color: $theme-color;
+        position: absolute;
+        bottom: -1px;
+        #{$direction_end}: -1px;
+        clip-path: polygon(10px 0%, 100% 0, 100% 100%, 0% 100%);
+        z-index: 2;
+    }
+    &_quote {
+        position: absolute;
+        #{$direction_end}: 40px;
+        top: 40px;
+        z-index: -1;
+    }
+    &_profile {
+        display: flex;
+        align-items: flex-end;
+        gap: 35px;
+        margin-top: -90px;
+    }
+    &_img {
+        text-align: center;
+        img {
+            max-width: 110px;
+            padding:5px;
+            background-color: #1E1E1E;
+            border: 1px solid #3D4250;
+        }
+    }
+    &_name {
+        color: $white-color;
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        margin-top: -0.3em;
+    }
+    &_desig {
+        margin-bottom: -0.2em;
+        display: block;
+        color: $theme-color;
+    }
+    &_text {
+        margin-bottom: -0.5em;
+        margin-top: 25px;
+        color: $white-color;
+    }
+    &_review {
+        color: $theme-color;
+        font-size: 16px;
+        margin-top: 15px;
+        i {
+            margin-#{$direction_end}: 4px;
+            &:last-child {
+                margin-#{$direction_end}: 0 !important;
+            }
+        }
+    }
+}
+
+@include xs {
+    .testi-box {
+        padding-top: 40px; padding-#{$direction_end}: 20px; padding-bottom: 20px; padding-#{$direction_start}: 20px;
+        &_quote {
+            top: -1px;
+            #{$direction_end}: -1px;
+        }
+        &_name {
+            font-size: 24px;
+        }
+        &_profile {
+            gap: 25px;
+        }
+        &_text {
+            margin-top: 20px;
+        }
+    }
+}
+
+@include vxs {
+    .testi-box {
+        &_text {
+            font-size: 14px;
+        }
+    }
+}
+
+/* Testimonial Grid ---------------------------------- */
+.testi-grid {
+    position: relative;
+    z-index: 2;
+    background-color: $white-color;
+    box-shadow: 0px 4px 15px rgba(192, 192, 192, 0.2);
+    display: flex;
+    &_img {
+        position: relative;
+        flex: 48%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .icon-box {
+            position: absolute;
+            bottom: 0;
+            #{$direction_end}: -46px;
+            gap: 0;
+        }
+    }
+    &_content {
+        flex: 52%;
+        padding-top: 60px; padding-#{$direction_end}: 60px; padding-bottom: 106px; padding-#{$direction_start}: 60px;
+    }
+    &_profile {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .box-title {
+        margin-bottom: 6px;
+    }
+    &_desig {
+        font-size: 14px;
+        display: block;
+        margin-bottom: -0.5em;
+    }
+    &_text {
+        margin-top: -0.45em;
+        margin-bottom: 25px;
+        font-weight: 500;
+        font-style: italic;
+    }
+    &_review {
+        color: $theme-color2;
+        font-size: 16px;
+        margin-bottom: 25px;
+        margin-top: -0.4em;
+        i {
+            margin-#{$direction_end}: 3px;
+        }
+    }
+    &_quote {
+        position: absolute;
+        bottom: 106px;
+        #{$direction_end}: 60px;
+        z-index: -1;
+    }
+}
+
+@include md {
+    .testi-grid {
+        flex-direction: column;
+        &_img {
+            .icon-box {
+                #{$direction_end}: 0;
+            }
+        }
+        &_content {
+            padding:60px;
+        }
+        &_quote {
+            bottom: 60px;
+        }
+    }
+}
+@include sm {
+    .testi-grid {
+        &_content {
+            padding:40px;
+        }
+        &_quote {
+            bottom: 40px;
+            #{$direction_end}: 40px;
+        }
+    }
+}
+@include xs {
+    .testi-grid {
+        &_content {
+            padding:40px 20px;
+        }
+        &_quote {
+            #{$direction_end}: 20px; 
+        }
+    }
+}
+@include vxs {
+    .testi-grid {
+        &_text {
+            font-size: 14px;
+        }
+    }
+}
+@if $direction == rtl {
+
+    svg[class*=right], svg[class*=left], [class*=right].fas, [class*=left].fas {
+        transform: scaleX(-1) !important;
+    }
+
+    .product-item__badge {
+        transform: rotate(-45deg) translateZ(0) !important;
+    }
+
+    #st_gdpr_iframe {
+        left: 0 !important;
+        right: -5000px;
+    }
+
+    .product-form__item select.single-option-selector {
+        background-position: calc(23px) calc(1rem + 10px), calc(27px) calc(1rem + 10px);
+    }
+
+    .card__badge {
+        -ms-transform: rotate(-45deg) translateZ(0);
+        -webkit-transform: rotate(-45deg) translateZ(0);
+        transform: rotate(-45deg) translateZ(0);
+    }
+}

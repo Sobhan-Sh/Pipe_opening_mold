@@ -1,0 +1,338 @@
+@charset "UTF-8";
+$direction: rtl;
+$direction_upside: ltr;
+$direction_angle: '-';
+$direction_upside_angle: '+';
+$direction_start: right;
+$direction_end: left;
+
+@if $direction == ltr {
+	$direction_upside: rtl;
+	$direction_angle: '+';
+    $direction_upside_angle: '-';
+	$direction_start: left;
+	$direction_end: right;
+}
+
+body {
+	direction: $direction;
+}
+.ripple-animation {
+    animation-duration: var(--ripple-ani-duration);
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-name: ripple;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+@keyframes ripple2 {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: scale(2.8);
+        opacity: 0;
+    }
+}
+
+.fancy-animation {
+    animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+    0% {
+        border-top-#{$direction_start}-radius: 60%; border-top-#{$direction_end}-radius: 40%; border-bottom-#{$direction_end}-radius: 30%; border-bottom-#{$direction_start}-radius: 70% / 60%;
+    }
+
+    50% {
+        border-top-#{$direction_start}-radius: 30%; border-top-#{$direction_end}-radius: 60%; border-bottom-#{$direction_end}-radius: 70%; border-bottom-#{$direction_start}-radius: 40% / 50%;
+    }
+
+    100% {
+        border-top-#{$direction_start}-radius: 60%; border-top-#{$direction_end}-radius: 40%; border-bottom-#{$direction_end}-radius: 30%; border-bottom-#{$direction_start}-radius: 70% / 60%;
+    }
+}
+
+.movingX {
+    animation: movingX 8s linear infinite;
+}
+@keyframes movingX {
+    0% {
+        transform: translateX(#{$direction_angle}0);
+    }
+    50% {
+        transform: translateX(#{$direction_angle}50px);
+    }
+    100% {
+        transform: translateX(#{$direction_angle}0);
+    }
+}
+
+.moving {
+    animation: moving 8s linear infinite;
+}
+@keyframes moving {
+    0% {
+        transform: translateX(#{$direction_angle}0);
+    }
+    50% {
+        transform: translateX(#{$direction_upside_angle}50px);
+    }
+    100% {
+        transform: translateX(#{$direction_angle}0);
+    }
+}
+
+.jump {
+    animation: jumpAni 7s linear infinite;
+}
+@keyframes jumpAni {
+    0% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.jump-reverse {
+    animation: jumpReverseAni 7s linear infinite;
+}
+@keyframes jumpReverseAni {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.spin {
+    animation: spin 10s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.bg-color-ani,
+.color-animate {
+    animation: bgColor 6s linear infinite;
+}
+@keyframes bgColor {
+    0% {
+        background-color: #F2BA4C;
+    }
+    25% {
+        background-color: #81F24C;
+    }
+    50% {
+        background-color: #41F27D;
+    }
+    75% {
+        background-color: #0500FF;
+    }
+    100% {
+        background-color: #F2BA4C;
+    }
+}
+
+// .svg-animate {
+//     animation: svgAnimate 80s linear infinite both;
+// }
+
+// @keyframes svgAnimate {
+//     0% {
+//         transform: rotateZ(0);
+//     }
+//     50% {
+//         transform: rotateZ(180deg);
+//     }
+//     100% {
+//         transform: rotateZ(360deg);
+//     }
+// }
+
+// This is for Progress bar animation also has a js code
+@keyframes animate-positive {
+    0% {
+        width: 0;
+    }
+}
+
+.scalein.themeholy-animated {
+    --animation-name: scalein;
+}
+
+.slidetopleft.themeholy-animated {
+    --animation-name: slidetopleft;
+}
+
+.slidebottomright.themeholy-animated {
+    --animation-name: slidebottomright;
+}
+
+.slideinleft.themeholy-animated {
+    --animation-name: slideinleft;
+}
+
+.slideinright.themeholy-animated {
+    --animation-name: slideinright;
+}
+
+.slideinup.themeholy-animated {
+    --animation-name: slideinup;
+}
+
+.slideindown.themeholy-animated {
+    --animation-name: slideindown;
+}
+.rollinleft.themeholy-animated {
+    --animation-name: rollinleft;
+}
+.rollinright.themeholy-animated {
+    --animation-name: rollinright;
+}
+
+.scalein,
+.slidetopleft,
+.slidebottomright,
+.slideinleft,
+.slideinright,
+.slideindown,
+.slideinup,
+.rollinleft,
+.rollinright {
+    opacity: 0;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-delay: 0.3s;
+    animation-name: var(--animation-name);
+}
+
+.themeholy-animated {
+    opacity: 1;
+}
+
+@keyframes slideinup {
+    0% {
+        opacity: 0;
+        transform: translateY(70px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideinright {
+    0% {
+        opacity: 0;
+        transform: translateX(#{$direction_angle}70px);
+    }
+
+    100% {
+        transform: translateX(#{$direction_angle}0);
+    }
+}
+
+@keyframes slideindown {
+    0% {
+        opacity: 0;
+        transform: translateY(-70px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideinleft {
+    0% {
+        opacity: 0;
+        transform: translateX(#{$direction_upside_angle}70px);
+    }
+
+    100% {
+        transform: translateX(#{$direction_angle}0);
+    }
+}
+
+@keyframes slidebottomright {
+    0% {
+        opacity: 0;
+        transform: translateX(#{$direction_angle}100px) translateY(100px);
+    }
+
+    100% {
+        transform: translateX(#{$direction_angle}0) translateY(0);
+    }
+}
+
+@keyframes slidetopleft {
+    0% {
+        opacity: 0;
+        transform: translateX(#{$direction_upside_angle}100px) translateY(-100px);
+    }
+
+    100% {
+        transform: translateX(#{$direction_angle}0) translateY(0);
+    }
+}
+
+@if $direction == rtl {
+
+    svg[class*=right], svg[class*=left], [class*=right].fas, [class*=left].fas {
+        transform: scaleX(-1) !important;
+    }
+
+    .product-item__badge {
+        transform: rotate(-45deg) translateZ(0) !important;
+    }
+
+    #st_gdpr_iframe {
+        left: 0 !important;
+        right: -5000px;
+    }
+
+    .product-form__item select.single-option-selector {
+        background-position: calc(23px) calc(1rem + 10px), calc(27px) calc(1rem + 10px);
+    }
+
+    .card__badge {
+        -ms-transform: rotate(-45deg) translateZ(0);
+        -webkit-transform: rotate(-45deg) translateZ(0);
+        transform: rotate(-45deg) translateZ(0);
+    }
+}

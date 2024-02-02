@@ -1,0 +1,154 @@
+@charset "UTF-8";
+$direction: rtl;
+$direction_upside: ltr;
+$direction_angle: '-';
+$direction_upside_angle: '+';
+$direction_start: right;
+$direction_end: left;
+
+@if $direction == ltr {
+	$direction_upside: rtl;
+	$direction_angle: '+';
+    $direction_upside_angle: '-';
+	$direction_start: left;
+	$direction_end: right;
+}
+
+body {
+	direction: $direction;
+}
+.popup-search-box {
+  position: fixed;
+  top: 0;
+  #{$direction_start}: 50%;
+  background-color: rgba(0, 0, 0, 0.95);
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  border-radius:50%;
+  transform: translateX(#{$direction_upside_angle}50%);
+  transition: all ease 0.4s;
+
+
+  button.searchClose {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 40px;
+    #{$direction_end}: 40px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $theme-color;
+    background-color: transparent;
+    font-size: 22px;
+    border-radius:50%;
+    transform: rotate(0);
+    transition: all ease 0.4s;
+    color: $theme-color;
+
+
+    &:hover {
+      color: $body-color;
+      background-color: #fff;
+      border-color: transparent;
+      border-color: transparent;
+      transform: rotate(90deg);
+    }
+  }
+
+  form {
+    position: absolute;
+    top: 50%;
+    #{$direction_start}: 50%;
+    display: inline-block;
+    padding-bottom: 40px;
+    cursor: auto;
+    width: 100%;
+    max-width: 700px;
+    transform: translate(#{$direction_upside_angle}50%, -50%) scale(0);
+    transition: transform ease 0.4s;
+
+    @include lg {
+      max-width: 600px;
+    }
+
+    input {
+      font-size: 18px;
+      height: 70px;
+      width: 100%;
+      border: 2px solid $theme-color;
+      background-color: transparent;
+      padding-#{$direction_start}: 30px;
+      color: #fff;
+      border-radius:50px;
+
+      @include inputPlaceholder {
+        color: #fff;
+      }
+    }
+
+    button {
+      position: absolute;
+      top: 0px;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      #{$direction_end}: 12px;
+      color: $white-color;
+      cursor: pointer;
+      width: 70px;
+      height: 70px;
+      transition: all ease 0.4s;
+      transform: scale(1.001);
+      
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+  }
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    width: 100.1%;
+    height: 100%;
+    transition: all ease 0.4s;
+    border-radius:0;
+
+    form {
+      transition-delay: 0.5s;
+      transform: translate(#{$direction_upside_angle}50%, -50%) scale(1);
+    }
+  }
+
+}
+@if $direction == rtl {
+
+    svg[class*=right], svg[class*=left], [class*=right].fas, [class*=left].fas {
+        transform: scaleX(-1) !important;
+    }
+
+    .product-item__badge {
+        transform: rotate(-45deg) translateZ(0) !important;
+    }
+
+    #st_gdpr_iframe {
+        left: 0 !important;
+        right: -5000px;
+    }
+
+    .product-form__item select.single-option-selector {
+        background-position: calc(23px) calc(1rem + 10px), calc(27px) calc(1rem + 10px);
+    }
+
+    .card__badge {
+        -ms-transform: rotate(-45deg) translateZ(0);
+        -webkit-transform: rotate(-45deg) translateZ(0);
+        transform: rotate(-45deg) translateZ(0);
+    }
+}

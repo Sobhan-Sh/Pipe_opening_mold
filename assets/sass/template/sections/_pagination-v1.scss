@@ -1,0 +1,102 @@
+@charset "UTF-8";
+$direction: rtl;
+$direction_upside: ltr;
+$direction_angle: '-';
+$direction_upside_angle: '+';
+$direction_start: right;
+$direction_end: left;
+
+@if $direction == ltr {
+	$direction_upside: rtl;
+	$direction_angle: '+';
+    $direction_upside_angle: '-';
+	$direction_start: left;
+	$direction_end: right;
+}
+
+body {
+	direction: $direction;
+}
+.themeholy-pagination {
+    margin-bottom: 30px;
+
+    ul {
+        margin:0;
+        padding:0;
+    }
+
+    li {
+        display: inline-block;
+        margin:0 3px;
+        list-style-type: none;
+
+        &:last-child {
+            margin-#{$direction_end}: 0;
+        }
+
+        &:first-child {
+            margin-#{$direction_start}: 0;
+        }
+    }
+
+    span,
+    a {
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        border: none;
+        color: $theme-color;
+        background-color: $smoke-color;
+        width: 46px;
+        height: 46px;
+        line-height: 46px;
+        z-index: 1;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius:0;
+
+        &.active,
+        &:hover {
+            color: $white-color;
+            background-color: $theme-color;
+        }
+    }
+}
+
+@include sm {
+    .themeholy-pagination {
+        span,
+        a {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+        }
+    }
+}
+
+@if $direction == rtl {
+
+    svg[class*=right], svg[class*=left], [class*=right].fas, [class*=left].fas {
+        transform: scaleX(-1) !important;
+    }
+
+    .product-item__badge {
+        transform: rotate(-45deg) translateZ(0) !important;
+    }
+
+    #st_gdpr_iframe {
+        left: 0 !important;
+        right: -5000px;
+    }
+
+    .product-form__item select.single-option-selector {
+        background-position: calc(23px) calc(1rem + 10px), calc(27px) calc(1rem + 10px);
+    }
+
+    .card__badge {
+        -ms-transform: rotate(-45deg) translateZ(0);
+        -webkit-transform: rotate(-45deg) translateZ(0);
+        transform: rotate(-45deg) translateZ(0);
+    }
+}

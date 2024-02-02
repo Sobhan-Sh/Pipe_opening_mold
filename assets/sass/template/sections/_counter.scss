@@ -1,0 +1,154 @@
+@charset "UTF-8";
+$direction: rtl;
+$direction_upside: ltr;
+$direction_angle: '-';
+$direction_upside_angle: '+';
+$direction_start: right;
+$direction_end: left;
+
+@if $direction == ltr {
+	$direction_upside: rtl;
+	$direction_angle: '+';
+    $direction_upside_angle: '-';
+	$direction_start: left;
+	$direction_end: right;
+}
+
+body {
+	direction: $direction;
+}
+/* Counter 1 ---------------------------------- */
+.counter-card {
+    &-wrap {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    border-#{$direction_end}: 1px solid $border-color;
+    padding:70px 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    &:last-child {
+        border-#{$direction_end}: none;
+    }
+    &_number {
+        font-size: 44px;
+        color: $theme-color;
+        font-weight: 600;
+        margin-bottom: 0px;
+        margin-top: -0.28em;
+    }
+    &_text {
+        font-size: 18px;
+        font-weight: 500;
+        display: block;
+        margin-bottom: -0.32em;
+    }
+    &.style2 {
+        --border-color: rgba(224, 224, 224, 0.5);
+        .counter-card_number {
+            color: $white-color;
+
+        }
+        .counter-card_text {
+            color: #e0e0e0;
+            font-weight: 400;
+        }
+    }
+    &.style3 {
+        &:before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: $white-color;
+            clip-path: path("M0 0V197.605L97.5 218L211.5 197.605L305 218V197.605V16.7692L211.5 0L97.5 16.7692L0 0Z");
+            z-index: -1;
+        }
+        filter: drop-shadow(0px 6px 30px rgba(192, 192, 192, 0.25));
+        border: none !important;
+        padding:79px 0;
+        &:nth-child(even) {
+            &:before {
+                clip-path: path("M305 0V197.605L207.5 218L93.5 197.605L0 218V197.605V16.7692L93.5 0L207.5 16.7692L305 0Z");
+            }
+        }
+    }
+}
+@include xl {
+    .counter-card.style3:nth-child(even):before {
+        transform: translateY(-4px);
+    }
+}
+@include lg {
+    .counter-card.style3:nth-child(even):before {
+        transform: translateY(-13px);
+    }
+}
+@include md {
+    .counter-card {
+        &-wrap {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        &:nth-child(even) {
+            border-#{$direction_end}: none;
+        }
+        &:nth-child(-n + 2) {
+            border-bottom: 1px solid $border-color;
+        }
+        &.style3 {
+            margin:5px 20px;
+            &:nth-child(even):before {
+                transform: translateY(0);
+            }
+        }
+    }
+}
+@include sm {
+    .counter-card {
+        &.style3 {
+            margin:5px 15px;
+        }
+    }
+}
+
+@include xs {
+    .counter-card {
+        padding:50px 0;
+        &.style3 {
+            margin:-12px 0;
+        }
+    }
+}
+
+@include vxs {
+    .counter-card {
+        &_text {
+            font-size: 16px;
+        }
+    }
+}
+@if $direction == rtl {
+
+    svg[class*=right], svg[class*=left], [class*=right].fas, [class*=left].fas {
+        transform: scaleX(-1) !important;
+    }
+
+    .product-item__badge {
+        transform: rotate(-45deg) translateZ(0) !important;
+    }
+
+    #st_gdpr_iframe {
+        left: 0 !important;
+        right: -5000px;
+    }
+
+    .product-form__item select.single-option-selector {
+        background-position: calc(23px) calc(1rem + 10px), calc(27px) calc(1rem + 10px);
+    }
+
+    .card__badge {
+        -ms-transform: rotate(-45deg) translateZ(0);
+        -webkit-transform: rotate(-45deg) translateZ(0);
+        transform: rotate(-45deg) translateZ(0);
+    }
+}
