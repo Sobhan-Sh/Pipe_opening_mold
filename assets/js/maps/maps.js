@@ -1,107 +1,141 @@
 const CheckLocationn = () => {
-    if (polygon.contains(map.getCenter())) {
-        const centerLatLng = map.getCenter();
-        const centerLatitude = centerLatLng.lat;
-        const centerLongitude = centerLatLng.lng;
-        getLocationInfo(centerLatitude, centerLongitude);
-        centerMarker.setLatLng([centerLatitude, centerLongitude]);
-        console.log("در محدوده هستی");
-    }
-    else
-        alert("شما خارج منطقه کلیک کردید")
-}
+  if (polygon.contains(map.getCenter())) {
+    const centerLatLng = map.getCenter();
+    const centerLatitude = centerLatLng.lat;
+    const centerLongitude = centerLatLng.lng;
+    centerMarker.setLatLng([centerLatitude, centerLongitude]);
+    // console.log("در محدوده هستی");
+  } else alert("شما خارج منطقه کلیک کردید");
+};
 
-const map = L.map('map', {
-}).setView([34.29474133952971, 48.82484320970994], 18);
+const map = L.map("map", {}).setView(
+  [35.69955637933376, 51.33744673255695],
+  16
+);
 
-const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    minZoom: 17,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  minZoom: 10,
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
-
-const centerMarker = L.marker([34.29477780483854, 48.824838100516615], {
-    icon: L.divIcon({
-        className: 'leaflet-div-icon', html: `<img src="assets/img/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="Marker" tabindex="0" role="button" style="margin-left: -6px;margin-top: -27px;width: 25px;height: 41px;z-index: 365;">
-            <img src="assets/img/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" alt="" style="margin-left: -5px;margin-top: -29px; width: 41px; height: 41px; ">`
-    })
+const centerMarker = L.marker([35.69955637933376, 51.33744673255695], {
+  icon: L.divIcon({
+    className: "leaflet-div-icon",
+    html: `<img src="assets/img/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" alt="Marker" tabindex="0" role="button" style="margin-left: -6px;margin-top: -27px;width: 25px;height: 41px;z-index: 365;">
+            <img src="assets/img/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" alt="" style="margin-left: -5px;margin-top: -29px; width: 41px; height: 41px; ">`,
+  }),
 }).addTo(map);
 
-const marker = L.marker([34.29474133952971, 48.82484320970994]).addTo(map)
-    .bindPopup('<strong> هایپر مارکت الی شاپ </strong>').openPopup();
 let status = "";
 const polygon = L.polygon([
-    [34.294466, 48.822644],
-    [34.295388, 48.824478],
-    [34.292720, 48.829113],
-    [34.291876, 48.828368],
-    [34.291675, 48.827055],
-    [34.291616, 48.826057],
-    [34.291323, 48.825079],
-    [34.290943, 48.823838],
-    [34.291686, 48.823043],
-    [34.291952, 48.821986],
-    [34.292408, 48.821690],
-    [34.293867, 48.820535],
-    [34.294567, 48.822353],
-    [34.294466, 48.822644],
-]).addTo(map).on('mouseup', (e) => {
+  [35.80150969717896, 51.956870161676406],
+  [35.766405425281356, 51.98365678021605],
+  [35.74745382263179, 51.981596271097594],
+  [35.73240080527819, 51.97678841648793],
+  [35.70340179128489, 51.967172707268574],
+  [35.68164560596636, 51.93969925235612],
+  [35.646488464697136, 51.91016528832526],
+  [35.61131584559151, 51.87170245144783],
+  [35.59288591779425, 51.82431074172386],
+  [35.57333438702323, 51.79271626857459],
+  [35.54092419968295, 51.80233197779393],
+  [35.51241476094079, 51.829805432706344],
+  [35.47662388284996, 51.84697634202664],
+  [35.44193626832539, 51.842855323789784],
+  [35.41451128371447, 51.842855323789784],
+  [35.40051534723496, 51.830492269079166],
+  [35.39211661886066, 51.80920034152202],
+  [35.38987681022061, 51.7755453592543],
+  [35.38987681022061, 51.706174885600376],
+  [35.39155667253226, 51.6683988850958],
+  [35.42010897777862, 51.624441357235874],
+  [35.444734211024205, 51.60452310242436],
+  [35.455365506266524, 51.57224179290223],
+  [35.460400892732295, 51.53858681063451],
+  [35.456484508272894, 51.51454753758611],
+  [35.460400892732295, 51.48020571894558],
+  [35.4710301180137, 51.43006666373038],
+  [35.4710301180137, 51.38679597224327],
+  [35.47214890211393, 51.34558578987461],
+  [35.465435964025254, 51.26041807964603],
+  [35.457044003439805, 51.2198947336502],
+  [35.457044003439805, 51.16082680558843],
+  [35.45200840686947, 51.07565909535988],
+  [35.44305545707558, 51.02345953102625],
+  [35.44529378789321, 50.960957421100446],
+  [35.44529378789321, 50.91562622049493],
+  [35.485013800386696, 50.8950211293106],
+  [35.5263912415997, 50.873729201753456],
+  [35.57668641702125, 50.87922389273594],
+  [35.60796526534385, 50.88265807459998],
+  [35.64369755235961, 50.85724512880598],
+  [35.684435192136775, 50.78512730966082],
+  [35.7368612552662, 50.77139058220462],
+  [35.780337547218835, 50.7899351642705],
+  [35.8176635952157, 50.790622000643324],
+  [35.857755615831934, 50.80779290996361],
+  [35.887811332321355, 50.84694258321382],
+  [35.91451795156624, 50.903950002157124],
+  [35.94121555787275, 50.94172600266175],
+  [35.93342968721947, 50.994612403368166],
+  [35.9226950510738, 51.09709703464087],
+  [35.912682159981365, 51.19050678134316],
+  [35.90934424796162, 51.29490591001044],
+  [35.902119377043654, 51.38754541233558],
+  [35.893216777218996, 51.495378722866896],
+  [35.893216777218996, 51.535902068862775],
+  [35.88264363955797, 51.62725130644663],
+  [35.874852003224426, 51.71860054403047],
+  [35.86260645490482, 51.83261538191711],
+  [35.836439171799185, 51.91160156479039],
+  [35.825273485002015, 51.942765102866176],
+  [35.81343803320002, 51.95238203375646],
+  [35.80150969717896, 51.956870161676406],
+])
+  .addTo(map)
+  .on("mouseup", (e) => {
     CheckLocationn();
-})
+  });
 
-map.on('mouseup', (e) => {
-    CheckLocationn();
+map.on("mouseup", (e) => {
+  // CheckLocationn();
+  console.log(map.getCenter());
 });
 
-function getLocationInfo(latitude, longitude) {
-    const base_url = "https://nominatim.openstreetmap.org/reverse";
-    const params = new URLSearchParams({
-        format: "json",
-        lat: latitude,
-        lon: longitude,
-    });
-    fetch(`${base_url}?${params}`)
-        .then(response => response.json())
-        .then(data => {
-            const address = data.display_name || 'Not found';
-            console.log("آدرس مکان:", address);
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-}
-
 const setLocationMe = () => {
-    if ("geolocation" in navigator) {
-        // درخواست موقعیت فعلی کاربر
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                // گرفتن مختصات جغرافیایی
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-                map.setView([latitude, longitude], 17.8);
-                CheckLocationn();
-                centerMarker.setLatLng([latitude, longitude]);
-            },
-            function (error) {
-                // در صورت عدم موفقیت در دریافت موقعیت
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        alert("دسترسی به موقعیت جغرافیایی توسط کاربر رد شده است.");
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        alert("اطلاعات موقعیت جغرافیایی در دسترس نیست.");
-                        break;
-                    case error.TIMEOUT:
-                        alert("درخواست برای دریافت موقعیت جغرافیایی به مدت زمان زیادی طول کشیده است.");
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        alert("خطای ناشناخته رخ داده است.");
-                        break;
-                }
-            }
-        );
-    } else {
-        alert("مرورگر شما از Geolocation API پشتیبانی نمی‌کند.");
-    }
-}
+  if ("geolocation" in navigator) {
+    // درخواست موقعیت فعلی کاربر
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        // گرفتن مختصات جغرافیایی
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        map.setView([latitude, longitude], 17.8);
+        CheckLocationn();
+        centerMarker.setLatLng([latitude, longitude]);
+      },
+      function (error) {
+        // در صورت عدم موفقیت در دریافت موقعیت
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            alert("دسترسی به موقعیت جغرافیایی توسط کاربر رد شده است.");
+            break;
+          case error.POSITION_UNAVAILABLE:
+            alert("اطلاعات موقعیت جغرافیایی در دسترس نیست.");
+            break;
+          case error.TIMEOUT:
+            alert(
+              "درخواست برای دریافت موقعیت جغرافیایی به مدت زمان زیادی طول کشیده است."
+            );
+            break;
+          case error.UNKNOWN_ERROR:
+            alert("خطای ناشناخته رخ داده است.");
+            break;
+        }
+      }
+    );
+  } else {
+    alert("مرورگر شما از Geolocation API پشتیبانی نمی‌کند.");
+  }
+};
